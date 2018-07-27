@@ -1,0 +1,28 @@
+{
+  "name": "@junyiz/koa-proxy-pass",
+  "version": "1.0.0",
+  "description": "A light-weight, no-dependency Proxy middleware for koajs, it's similar to nginx's proxy_pass",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "koa",
+    "middleware",
+    "proxy",
+    "proxy_pass"
+  ],
+  "author": "junyiz",
+  "license": "MIT",
+  "devDependencies": {
+    "koa": "^2.5.2",
+    "mocha": "^5.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/junyiz/koa-proxy-pass.git"
+  },
+  "files": [
+    "index.js"
+  ]
+}
