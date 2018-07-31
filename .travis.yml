@@ -1,0 +1,20 @@
+sudo: false
+
+language: node_js
+
+node_js:
+    - "8"
+    - "9"
+    - "10"
+
+install:
+  - PATH="`npm bin`:`npm bin -g`:$PATH"
+  # Install dependencies and build
+  - npm install
+
+script:
+  # Output useful info for debugging
+  - node --version
+  - npm --version
+  # Run tests
+  - npm test
