@@ -1,6 +1,7 @@
 # koa-proxy-pass 
 
 A light-weight, no-dependency Proxy middleware for koajs, it's similar to nginx's proxy_pass.
+[![Build Status](https://travis-ci.org/junyiz/koa-proxy-pass.svg?branch=master)](https://travis-ci.org/junyiz/koa-proxy-pass)
 
 ---
 
