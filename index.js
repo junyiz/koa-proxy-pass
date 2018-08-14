@@ -39,7 +39,7 @@ module.exports = (options = {}) => {
 
   return async (ctx, next) => {
     if (options.match && !ctx.path.match(options.match)) {
-      await next;
+      await next();
     } else {
       const opt = {
         hostname,
