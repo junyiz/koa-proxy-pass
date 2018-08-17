@@ -41,6 +41,7 @@ describe('koa-proxy-pass', () => {
       });
     })();
   });
+
 });
 
 describe('koa-proxy-pass', () => {
@@ -48,7 +49,11 @@ describe('koa-proxy-pass', () => {
   before(() => {
     const serveApp = new Koa();
     serveApp.use(async (ctx, next) => {
-      ctx.body = '';
+      if (ctx.querystring && ctx.path) {
+        ctx.body = ctx.path + '?' + ctx.querystring;
+      } else {
+        ctx.body = ctx.querystring || ctx.path;
+      }
     });
     serve = serveApp.listen(8096);
 
@@ -86,6 +91,36 @@ describe('koa-proxy-pass', () => {
             assert.equal(arr.join(''), 'next app');
             done();
           });
+      });
+    })();
+  });
+
+  it('proxy path', (done) => {
+    (async () => {
+      get('http://localhost:8098/serve', res => {
+        let arr = [];
+        res.on('data', chunk => {
+          arr.push(chunk);
+        });
+        res.on('end', () => {
+          assert.equal(arr.join(''), '/serve');
+          done();
+        });
+      });
+    })();
+  });
+
+  it('proxy path and querystring', (done) => {
+    (async () => {
+      get('http://localhost:8098/serve?q=qs', res => {
+        let arr = [];
+        res.on('data', chunk => {
+          arr.push(chunk);
+        });
+        res.on('end', () => {
+          assert.equal(arr.join(''), '/serve?q=qs');
+          done();
+        });
       });
     })();
   });

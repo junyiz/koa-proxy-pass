@@ -25,7 +25,7 @@ const getPath = (ctx, map) => {
     path = ctx.path;
   }
   if (ctx.querystring) {
-    path = '?' + ctx.querystring;
+    path += '?' + ctx.querystring;
   }
   return path;
 };
