@@ -57,6 +57,7 @@ module.exports = (options = {}) => {
           }
           resolve(res);
         });
+        req.on('error', reject);
         ctx.req.pipe(req);
         ctx.req.on('end', () => req.end());
       });

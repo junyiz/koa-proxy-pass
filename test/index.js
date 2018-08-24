@@ -72,6 +72,11 @@ describe('koa-proxy-pass', () => {
       host: 'http://localhost:8097',
       match: /^\/next/
     }));
+    proxyApp.use(proxyPass({
+      host: 'http://localhost:18097',
+      match: /^\/error/
+    }));
+    proxyApp.on('error', () => {});
     proxy = proxyApp.listen(8098);
   });
   after(() => {
@@ -119,6 +124,21 @@ describe('koa-proxy-pass', () => {
         });
         res.on('end', () => {
           assert.equal(arr.join(''), '/serve?q=qs');
+          done();
+        });
+      });
+    })();
+  });
+
+  it('internal server error', (done) => {
+    (async () => {
+      get('http://localhost:8098/error', res => {
+        let arr = [];
+        res.on('data', chunk => {
+          arr.push(chunk);
+        });
+        res.on('end', () => {
+          assert.equal(arr.join(''), 'Internal Server Error');
           done();
         });
       });
