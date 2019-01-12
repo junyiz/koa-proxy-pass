@@ -1,8 +1,8 @@
-# koa-proxy-pass 
-
-A light-weight, no-dependency Proxy middleware for koajs, it's similar to nginx's proxy_pass.  
 [![Build Status](https://travis-ci.org/junyiz/koa-proxy-pass.svg?branch=master)](https://travis-ci.org/junyiz/koa-proxy-pass)
 
+# koa-proxy-pass
+
+A light-weight, no-dependency Proxy middleware for koajs, it's similar to nginx's proxy_pass.
 
 ## Install
 
@@ -68,6 +68,24 @@ app.use(proxyPass({
 app.listen(8090);
 ```
 
+## Options
+
+#### host
+
+Type: String
+
+'host' is required
+
+#### match
+
+Type: RegExp
+
+#### map
+
+Type: Object or Function
+
+Object is a path mapping of key-value, Function that handles paths
+
 ## LICENSE
 
-Copyright (c) 2018 junyiz. Licensed under the MIT license.
+Copyright (c) 2018-2019 junyiz. Licensed under the MIT license.
