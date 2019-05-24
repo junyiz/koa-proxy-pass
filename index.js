@@ -1,6 +1,6 @@
 const http = require('http');
 const https = require('https');
-const { join } = require('path');
+const { normalize } = require('path');
 const { parse } = require('url');
 
 const getHeaders = (rawHeaders, host) => {
@@ -44,7 +44,7 @@ module.exports = (options = {}) => {
       const opt = {
         hostname,
         port: port || (protocol === 'http:' ? 80 : 443),
-        path: join(pathname, getPath(ctx, options.map)),
+        path: normalize(pathname + getPath(ctx, options.map)),
         method: ctx.method,
         headers: getHeaders(ctx.req.rawHeaders, host)
       };
