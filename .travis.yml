@@ -14,7 +14,16 @@ node_js:
   - "11"
   - "12"
 
-install:
+install_windows:
+  # Install dependencies and build
+  - npm install
+
+install_linux:
+  - PATH="`npm bin`:`npm bin -g`:$PATH"
+  # Install dependencies and build
+  - npm install
+
+install_osx:
   - PATH="`npm bin`:`npm bin -g`:$PATH"
   # Install dependencies and build
   - npm install
