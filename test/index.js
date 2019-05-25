@@ -54,6 +54,9 @@ describe('koa-proxy-pass', () => {
       } else {
         ctx.body = ctx.querystring || ctx.path;
       }
+      if (ctx.path == '/serve/app.js') {
+        ctx.status = 200;
+      }
     });
     serve = serveApp.listen(8096);
 
@@ -88,14 +91,14 @@ describe('koa-proxy-pass', () => {
   it('await next', (done) => {
     (async () => {
       get('http://localhost:8098/next', res => {
-          let arr = [];
-          res.on('data', chunk => {
-            arr.push(chunk);
-          });
-          res.on('end', () => {
-            assert.equal(arr.join(''), 'next app');
-            done();
-          });
+        let arr = [];
+        res.on('data', chunk => {
+          arr.push(chunk);
+        });
+        res.on('end', () => {
+          assert.equal(arr.join(''), 'next app');
+          done();
+        });
       });
     })();
   });
@@ -111,6 +114,15 @@ describe('koa-proxy-pass', () => {
           assert.equal(arr.join(''), '/serve');
           done();
         });
+      });
+    })();
+  });
+
+  it('correct splicing path', (done) => {
+    (async () => {
+      get('http://localhost:8098/serve//app.js', res => {
+        assert.equal(res.statusCode, 200);
+        done();
       });
     })();
   });

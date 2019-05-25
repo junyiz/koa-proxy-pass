@@ -2,10 +2,17 @@ sudo: false
 
 language: node_js
 
+os:
+  - windows
+  - linux
+  - osx
+
 node_js:
   - "8"
   - "9"
   - "10"
+  - "11"
+  - "12"
 
 install:
   - PATH="`npm bin`:`npm bin -g`:$PATH"
