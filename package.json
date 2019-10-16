@@ -1,6 +1,6 @@
 {
   "name": "@junyiz/koa-proxy-pass",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "A light-weight, no-dependency Proxy middleware for koajs, it's similar to nginx's proxy_pass",
   "main": "index.js",
   "scripts": {

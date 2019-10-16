@@ -86,6 +86,12 @@ Type: Object or Function
 
 Object is a path mapping of key-value, Function that handles paths
 
+#### headers
+
+Type: Object
+
+This allows you to override request headers
+
 ## LICENSE
 
 Copyright (c) 2018-2019 junyiz. Licensed under the MIT license.

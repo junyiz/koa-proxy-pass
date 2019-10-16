@@ -46,7 +46,7 @@ module.exports = (options = {}) => {
         port: port || (protocol === 'http:' ? 80 : 443),
         path: normalize(pathname + getPath(ctx, options.map)),
         method: ctx.method,
-        headers: getHeaders(ctx.req.rawHeaders, host)
+        headers: Object.assign(getHeaders(ctx.req.rawHeaders, host), options.headers || {})
       };
       ctx.body = await new Promise((resolve, reject) => {
         const req = request(opt, res => {
