@@ -58,7 +58,7 @@ module.exports = (options = {}) => {
           resolve(res);
         });
         req.on('error', reject);
-        ctx.req.pipe(req);
+        ctx.req.pipe(req); // 通过管道(pipe)将 koa 接收的请求信息(ctx.req)发送到真实的服务器
         ctx.req.on('end', () => req.end());
       });
     }
