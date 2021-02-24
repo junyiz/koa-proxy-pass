@@ -55,7 +55,7 @@ module.exports = (options = {}) => {
             if (name === 'transfer-encoding') { continue; }
             ctx.set(name, res.headers[name]);
           }
-          resolve(res);
+          resolve(res); // res is Stream，so res.pipe(ctx.res)，see: https://github.com/koajs/koa/blob/eb51cf5fb35b39592a050b25fd261a574f547cfa/lib/application.js#L276
         });
         req.on('error', reject);
         ctx.req.pipe(req); // 通过管道(pipe)将 koa 接收的请求信息(ctx.req)发送到真实的服务器
