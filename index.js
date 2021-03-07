@@ -1,7 +1,6 @@
 const http = require('http');
 const https = require('https');
 const { normalize } = require('path');
-const { parse } = require('url');
 
 const getHeaders = (rawHeaders, host) => {
   let headers = {};
@@ -34,7 +33,7 @@ module.exports = (options = {}) => {
   if (!options.host) {
     throw new Error('miss option host');
   }
-  const { protocol, host, hostname, port, pathname } = parse(options.host);
+  const { protocol, host, hostname, port, pathname } = new URL(options.host);
   const request = protocol === 'http:' ? http.request : https.request;
 
   return async (ctx, next) => {
