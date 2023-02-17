@@ -1,4 +1,4 @@
-# koa-proxy-pass [![build status](https://github.com/junyiz/koa-proxy-pass/ci.yml/badge.svg?branch=master)](https://github.com/junyiz/koa-proxy-pass/ci.yml)
+# koa-proxy-pass [![build status](https://github.com/junyiz/koa-proxy-pass/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/junyiz/koa-proxy-pass/actions/workflows/ci.yml)
 
 A light-weight, no-dependency Proxy middleware for koajs, it's similar to nginx's proxy_pass.
 
