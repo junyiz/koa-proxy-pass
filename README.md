@@ -1,6 +1,4 @@
-[![Build Status](https://travis-ci.org/junyiz/koa-proxy-pass.svg?branch=master)](https://travis-ci.org/junyiz/koa-proxy-pass)
-
-# koa-proxy-pass
+# koa-proxy-pass [![build status](https://github.com/junyiz/koa-proxy-pass/ci.yml/badge.svg?branch=master)](https://github.com/junyiz/koa-proxy-pass/ci.yml)
 
 A light-weight, no-dependency Proxy middleware for koajs, it's similar to nginx's proxy_pass.
 
@@ -16,7 +14,7 @@ When you request http://localhost:8090, it will fetch https://github.com and ret
 
 ```js
 const Koa = require('koa');
-const proxyPass = require('koa-proxy-pass');
+const proxyPass = require('./koa-proxy-pass');
 const app = new Koa();
 app.use(proxyPass({
   host: 'https://github.com'
