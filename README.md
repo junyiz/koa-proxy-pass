@@ -18,6 +18,7 @@ const proxyPass = require('./koa-proxy-pass');
 const app = new Koa();
 app.use(proxyPass({
   host: 'https://github.com'
+  match: /\//
 }));
 app.listen(8090);
 ```
@@ -78,6 +79,8 @@ Type: String
 
 Type: RegExp
 
+'match' is required
+
 #### map
 
 Type: Object or Function
@@ -92,4 +95,4 @@ This allows you to override request headers
 
 ## LICENSE
 
-Copyright (c) 2018-2019 junyiz. Licensed under the MIT license.
+Copyright (c) 2018-2023 junyiz. Licensed under the MIT license.

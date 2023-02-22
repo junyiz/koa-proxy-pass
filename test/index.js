@@ -15,7 +15,8 @@ describe('koa-proxy-pass', () => {
 
     const proxyApp = new Koa(); 
     proxyApp.use(proxyPass({
-      host: 'http://localhost:8096'
+      host: 'http://localhost:8096',
+      match: /\//
     }));
     proxy = proxyApp.listen(8098);
   });
