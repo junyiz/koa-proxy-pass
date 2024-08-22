@@ -30,6 +30,17 @@ const getPath = (ctx, map) => {
   return path;
 };
 
+const isMatch = (ctx, match) => {
+  if (typeof match === 'string') {
+    return ctx.path.startsWith(match);
+  } else if (match instanceof RegExp) {
+    return ctx.path.match(match);
+  } else if (typeof match === 'function') {
+    return match(ctx);
+  }
+  return false;
+};
+
 module.exports = (options = {}) => {
   if (!options.host) {
     throw new Error('miss option host');
@@ -40,7 +51,7 @@ module.exports = (options = {}) => {
   const { protocol, host, hostname, port, pathname } = new URL(options.host);
   const request = protocol === 'http:' ? http.request : https.request;
   return async (ctx, next) => {
-    if (options.match && ctx.path.match(options.match)) {
+    if (isMatch(ctx, options.match)) {
       const opt = {
         hostname,
         port: port || (protocol === 'http:' ? 80 : 443),
