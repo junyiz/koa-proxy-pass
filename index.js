@@ -15,6 +15,13 @@ const getHeaders = (rawHeaders, host) => {
   return headers;
 };
 
+const getSourceHost = (ctx, host) => {
+  if (typeof host === 'function') {
+    return host(ctx);
+  }
+  return host;
+};
+
 const getPath = (ctx, map) => {
   let path = '';
   if (typeof map === 'function') {
@@ -45,13 +52,11 @@ module.exports = (options = {}) => {
   if (!options.host) {
     throw new Error('miss option host');
   }
-  if (!options.match) {
-    throw new Error('miss option match');
-  }
-  const { protocol, host, hostname, port, pathname } = new URL(options.host);
-  const request = protocol === 'http:' ? http.request : https.request;
   return async (ctx, next) => {
-    if (isMatch(ctx, options.match)) {
+    const sourceHost = getSourceHost(ctx, options.host);
+    if (isMatch(ctx, options.match) && sourceHost) {
+      const { protocol, host, hostname, port, pathname } = new URL(sourceHost);
+      const request = protocol === 'http:' ? http.request : https.request;
       const opt = {
         hostname,
         port: port || (protocol === 'http:' ? 80 : 443),
